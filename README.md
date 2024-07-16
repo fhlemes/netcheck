@@ -25,10 +25,16 @@ These instructions will guide you through setting up and using the NetCheck serv
 1. Apply Kubernetes Permissions
 
 ```sh
-kubectl apply -f config/permissions.yaml
+kubectl apply -f config/permission.yaml
 ```
 
-2. Check Logs
+2. Apply Example
+
+```sh
+kubectl apply -f example/deployment.yaml
+```
+
+3. Check Logs
 
 To check the logs of the NetCheck pod and see the results of the connectivity tests, use:
 
