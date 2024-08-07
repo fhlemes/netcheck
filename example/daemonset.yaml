@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: netcheck
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: netcheck
+  template:
+    metadata:
+      labels:
+        app: netcheck
+    spec:
+      serviceAccountName: netcheck-sa
+      containers:
+        - name: netcheck
+          image: ghcr.io/fhlemes/netcheck:v0.0.4
+          args: ["<namespace>"]

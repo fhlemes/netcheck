@@ -6,25 +6,26 @@ metadata:
   namespace: default
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
+kind: ClusterRole
 metadata:
-  namespace: default
-  name: netcheck-role
+  name: netcheck-clusterrole
 rules:
   - apiGroups: [""]
     resources: ["pods", "services"]
     verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["create", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
-  name: netcheck-rolebinding
-  namespace: default
+  name: netcheck-clusterrolebinding
 subjects:
   - kind: ServiceAccount
     name: netcheck-sa
     namespace: default
 roleRef:
-  kind: Role
-  name: netcheck-role
+  kind: ClusterRole
+  name: netcheck-clusterrole
   apiGroup: rbac.authorization.k8s.io
